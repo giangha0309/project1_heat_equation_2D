@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-
+giang = 100
 m = n = 21
 dx = dy = 0.1
 D = 0.1
