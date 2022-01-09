@@ -8,7 +8,7 @@ T = 1
 dt = 0.01
 dx2, dy2 = dx*dx, dy*dy
 u = 25 * np.ones((m + 2, n + 2))
-
+'''hahahaaaaaa'''
 for i in range(m + 2):
     for j in range(n + 2):
         if(i in range(int(m / 2 - 4), int(m / 2 + 7)) and j in range(int(n / 2 - 4), int(n / 2 + 7))): u[i][j] = 80
