@@ -1,25 +1,44 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+"""
+11
+11
+0.1
+0.1
+0.1
+1
+0.01
+80
+25
+3
+3
+"""
+m = int(input())  # 21
+n = int(input())  # 11
+dx = float(input())  # 0.1
+dy = float(input())  # 0.1
+D = float(input())  # 0.1
+T = float(input())  # 1
+dt = float(input())  # 0.01
+Th = int(input())
+Tc = int(input())
+e1 = int(input())  # 5
+e2 = int(input())  # 3
 
-m = n = 21
-dx = dy = 0.1
-D = 0.1
-T = 1
-dt = 0.01
 dx2, dy2 = dx * dx, dy * dy
-c = 25 * np.ones((m + 2, n + 2))
-'''hahahaaaaaa'''
+c = Tc * np.ones((m + 2, n + 2))
+
+
 for i in range(m + 2):
     for j in range(n + 2):
-        if i in range(int(m / 2 - 4), int(m / 2 + 7)) and j in range(int(n / 2 - 4), int(n / 2 + 7)): u[i][j] = 80
+        if i in range(int(m / 2 - e1 + 1), int(m / 2 + e1 + 1 + bool(m % 2 == 1))) and j in range(int(n / 2 - e2 + 1), int(n / 2 + e2 + 1 + bool(m % 2 == 1))): c[i][j] = Th
 
 
-def do_timestep(temp):
-    temp[1:-1, 1:-1] += D * dt * (
-            (temp[2:, 1:-1] - 2 * temp[1:-1, 1:-1] + temp[:-2, 1:-1]) / dx2
-            + (temp[1:-1, 2:] - 2 * temp[1:-1, 1:-1] + temp[1:-1, :-2]) / dy2)
-    return temp
+def do_timestep():
+    c[1:-1, 1:-1] += D * dt * (
+            (c[2:, 1:-1] - 2 * c[1:-1, 1:-1] + c[:-2, 1:-1]) / dx2
+            + (c[1:-1, 2:] - 2 * c[1:-1, 1:-1] + c[1:-1, :-2]) / dy2)
 
 
 fig = plt.figure()
@@ -30,11 +49,11 @@ fig.subplots_adjust(right=0.85)
 
 
 def animate(i):
-    temp = do_timestep(c)
-    im = ax.imshow(temp.copy(), cmap=plt.get_cmap('YlOrRd'), vmin=25, vmax=80)
+    do_timestep()
+    im = ax.imshow(c.copy(), cmap=plt.get_cmap('YlOrRd'), vmin=Tc, vmax=Th)
     fig.colorbar(im, cbar_ax)
     return im
 
 
-anim = FuncAnimation(fig, animate, np.arange(0, 100), interval=10, repeat=0)
+anim = FuncAnimation(fig, animate, np.arange(0, int(T/dt + 1)), interval=10, repeat=0)
 plt.show()
