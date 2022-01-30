@@ -2,30 +2,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-"""
-11
-11
-0.1
-0.1
-0.1
-1
-0.01
-80
-25
-3
-3
-"""
-m = int(input())  # 21
-n = int(input())  # 11
-dx = float(input())  # 0.1
-dy = float(input())  # 0.1
-D = float(input())  # 0.1
-T = float(input())  # 1
-dt = float(input())  # 0.01
+m = int(input())
+n = int(input())
+dx = float(input())
+dy = float(input())
+D = float(input())
+T = float(input())
+dt = float(input())
 Th = int(input())
 Tc = int(input())
-e1 = int(input())  # 5
-e2 = int(input())  # 3
+e1 = int(input())
+e2 = int(input())
 
 dx2, dy2 = dx * dx, dy * dy
 c = Tc * np.ones((m + 2, n + 2))
@@ -59,5 +46,4 @@ def animate(i):
 
 
 anim = FuncAnimation(fig, animate, np.arange(0, int(T / dt + 1)), interval=10, repeat=0, save_count=200)
-anim.save('test.mp4')
 plt.show()

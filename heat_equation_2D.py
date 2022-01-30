@@ -1,33 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-"""
-11
-11
-0.1
-0.1
-0.1
-1
-0.01
-80
-25
-3
-3
-"""
-m = int(input())  # 21
-n = int(input())  # 11
-dx = float(input())  # 0.1
-dy = float(input())  # 0.1
-D = float(input())  # 0.1
-T = float(input())  # 1
-dt = float(input())  # 0.01
+m = int(input())
+n = int(input())
+dx = float(input())
+dy = float(input())
+D = float(input())
+T = float(input())
+dt = float(input())
 Th = int(input())
 Tc = int(input())
-e1 = int(input())  # 5
-e2 = int(input())  # 3
-X
-dx2, dy2 = dx * dx, dy * dy  # Bình phương kích thước điểm lưới theo chiều x, y
-t0 = int(T / dt)  # Tổng số lần lặp
+e1 = int(input())
+e2 = int(input())
+dx2, dy2 = dx * dx, dy * dy
+t0 = int(T / dt)
 
 c = Tc * np.ones((m + 2, n + 2))
 
@@ -53,13 +39,13 @@ fignum = 0
 for t in range(t0 + 1):
     if t in mfig:
         fignum += 1
-        ax = fig.add_subplot(330 + fignum)  # column
-        ax.set_axis_off()  # turn off axis
-        im = ax.imshow(c.copy(), cmap=plt.get_cmap('YlOrRd'), vmin=Tc, vmax=Th)  # do thi im gan vao khung ax
+        ax = fig.add_subplot(330 + fignum)
+        ax.set_axis_off()
+        im = ax.imshow(c.copy(), cmap=plt.get_cmap('YlOrRd'), vmin=Tc, vmax=Th)
         ax.set_title('{:.1f} ms'.format(t * dt * 1000))
     do_timestep()
-fig.subplots_adjust(right=0.85)  #
-cbar_ax = fig.add_axes([0.9, 0.15, 0.03, 0.7])  # left, bottom, witdh, height
+fig.subplots_adjust(right=0.85)
+cbar_ax = fig.add_axes([0.9, 0.15, 0.03, 0.7])
 fig.colorbar(im, cbar_ax)
 plt.show()
 
